@@ -1,0 +1,58 @@
+﻿This document was exported from the paperMoney® platform which provides a simulated trading environment. All data contained herein is for educational and entertainment purposes only. TD Ameritrade its subsidiaries and/or affiliates are not responsible for the accuracy of any of these exported data.
+
+Stock quote and option quote for UVXY on 11/23/16 20:40:58
+
+UNDERLYING
+LAST,LX,Net Chng,BID,BX,ASK,AX,Size,Volume,Open,High,Low
+10.69,P,+.03,10.79,P,10.85,P,15 x 20,"20,690,309",10.87,11.04,10.59
+
+UNDERLYING EXTRA INFO
+Yield,PE,EPS,Div,Div.Freq,Ex Div.Date,52High,52Low,Shares,Beta
+0.00%,<empty>,<empty>,0,--,7/25/16,309.60,10.41,"48,008,000",-9.136
+
+25 NOV 16  (2)  100 (Weeklys)
+,,Delta,Gamma,Theta,Vega,BID,BX,ASK,AX,Exp,Strike,BID,BX,ASK,AX,Delta,Gamma,Theta,Vega,,
+,,1.00,.00,.00,.00,3.25,X,4.20,X,25 NOV 16,7,0,T,.01,M,-.01,.01,-.01,.00,,
+,,1.00,.00,.00,.00,.83,Z,2.90,Z,25 NOV 16,8.5,0,T,.01,X,-.01,.03,-.01,.00,,
+,,1.00,.00,.00,.00,1.28,X,2.28,Z,25 NOV 16,9,0,T,.01,A,-.02,.04,-.01,.00,,
+,,1.00,.00,.00,.00,.65,A,1.37,X,25 NOV 16,9.5,0,A,.01,Q,-.02,.07,-.01,.00,,
+,,1.00,.00,.00,.00,.66,X,.76,A,25 NOV 16,10,.01,Q,.02,Q,-.06,.23,-.01,.00,,
+,,1.00,.00,.00,.00,.22,X,.34,N,25 NOV 16,10.5,.05,M,.12,M,-.27,.66,-.03,.00,,
+,,.34,.77,-.03,.00,.08,X,.13,Q,25 NOV 16,11,.34,M,.43,M,-.61,.58,-.04,.00,,
+,,.14,.36,-.02,.00,.04,W,.05,Q,25 NOV 16,11.5,.69,M,.90,M,-.79,.35,-.04,.00,,
+,,.07,.18,-.02,.00,.02,Z,.03,Z,25 NOV 16,12,1.21,X,1.43,X,-.81,.21,-.05,.00,,
+,,.05,.11,-.02,.00,.01,X,.03,E,25 NOV 16,12.5,1.72,X,1.92,X,-.84,.15,-.06,.00,,
+,,.02,.04,-.01,.00,0,Z,.01,Z,25 NOV 16,13,2.18,X,2.43,X,-.86,.11,-.06,.00,,
+,,.02,.05,-.01,.00,0,E,.02,Z,25 NOV 16,13.5,2.67,M,2.89,M,-.88,.07,-.06,.00,,com.devexperts.tos.ui.seahorselaf.controls.icon.SeahorseSVGIcon@4c7b4554
+
+2 DEC 16  (9)  100 (Weeklys)
+
+9 DEC 16  (16)  100 (Weeklys)
+
+16 DEC 16  (23)  100
+
+16 DEC 16  (23)  20/100
+
+23 DEC 16  (30)  100 (Weeklys)
+
+30 DEC 16  (37)  100 (Weeklys)
+
+6 JAN 17  (44)  100 (Weeklys)
+
+20 JAN 17  (58)  100
+
+20 JAN 17  (58)  4/100
+
+20 JAN 17  (58)  20/100
+
+17 MAR 17  (114)  100
+
+17 MAR 17  (114)  20/100
+
+16 JUN 17  (205)  100
+
+19 JAN 18  (422)  100
+
+19 JAN 18  (422)  20/100
+
+18 JAN 19  (786)  100

@@ -1,0 +1,17 @@
+﻿String contents = Methods.DownloadPageString(String.Format("http://finance.yahoo.com/d/quotes.csv?s={0}&f=spl1", String.Join("+", symbols)));
+
+using (TextReader tr = new StringReader(contents))
+{
+    var csv = new CsvReader(tr, new CsvConfiguration() { HasHeaderRecord = false });
+    while (csv.Read())
+    {
+        String symbol = csv.GetField<String>(0);
+        Stock stock = context.Stocks.Single(x => x.Symbol == symbol);
+
+        stock.PrevClose = csv.GetField<Decimal>(1);
+        stock.Price = csv.GetField<Decimal>(2);
+        stock.PriceChange = stock.Price - stock.PrevClose;
+        stock.PriceChangePtg = (Double)stock.PriceChange / (Double)stock.PrevClose;
+    }
+}
+context.SaveChanges();
