@@ -1,0 +1,34 @@
+﻿@model UpdateOptionsModel
+
+@{
+    ViewData["Title"] = "Update Options";
+}
+
+<h2>Create</h2>
+
+<form asp-action="UpdateOptions">
+    <div class="form-horizontal">
+        <h4>Update Options</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Expiry" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Expiry" class="form-control" />
+                <span asp-validation-for="Expiry" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UnderlyingPrice" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UnderlyingPrice" class="form-control" />
+                <span asp-validation-for="UnderlyingPrice" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>

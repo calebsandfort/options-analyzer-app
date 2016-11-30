@@ -71,7 +71,7 @@ namespace OptionsAnalyzerApp.Models
         public Decimal ExpectedPriceChange { get; set; }
 
         [Display(Name = "Risk-Free Interest Rate")]
-        [DisplayFormat(DataFormatString = "{0:P2}")]
+        [DisplayFormat(DataFormatString = "{0:P4}")]
         public Decimal RiskFreeInterestRate { get; set; }
 
         [NotMapped]

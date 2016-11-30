@@ -11,6 +11,10 @@
     padding-top: 15px;
 }
 
+.slider-horizontal{
+    margin-top: 7px;
+}
+
 .slider-selection {
 	background: #5bc0de;
 }

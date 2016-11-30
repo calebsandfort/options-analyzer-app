@@ -88,11 +88,22 @@ namespace OptionsAnalyzerApp.Framework
         #region N()
         public static Double N(Double val)
         {
-            String valStr = String.Format("{0:N2}", val);
+            if (val >= 3.1) return 1;
+            else if (val <= -3) return 0;
+
+            String valStr = String.Format("{0:N3}", val);
+            valStr = valStr.Substring(0, valStr.Length - 1);
             String key1 = valStr.Substring(0, valStr.Length - 1);
             int key2 = Int32.Parse(valStr.Last().ToString());
 
-            return BlackScholesLookup[key1][key2];
+            //try
+            //{
+                return BlackScholesLookup[key1][key2];
+            //}
+            //catch
+            //{
+            //    return 0;
+            //}
         }
         #endregion
     }

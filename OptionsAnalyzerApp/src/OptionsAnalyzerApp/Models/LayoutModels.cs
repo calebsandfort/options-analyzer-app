@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,5 +23,14 @@ namespace OptionsAnalyzerApp.Models
     {
         public String Header { get; set; }
         public String SortProperty { get; set; }
+    }
+
+    public class UpdateOptionsModel
+    {
+        [DataType(DataType.Date)]
+        public DateTime Expiry { get; set; }
+
+        [DataType(DataType.Currency)]
+        public Decimal UnderlyingPrice { get; set; }
     }
 }

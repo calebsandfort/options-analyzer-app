@@ -125,15 +125,19 @@ namespace OptionsAnalyzerApp.Controllers
         [Route("UpdateOptions")]
         public void GetUpdateOptions(DateTime newExpiry, Decimal newUnderlyingPrice)
         {
-            foreach(Option option in _context.Options.ToList())
+            TradingAccount tradingAccount = _context.TradingAccounts.First();
+            Decimal spread;
+
+            foreach (Option option in _context.Options.ToList())
             {
                 option.Expiry = newExpiry;
                 option.UnderlyingPrice = newUnderlyingPrice;
-                option.FillCalculatedFields(_context.TradingAccounts.First());
+                option.BlackScholesPrice = option.CalculateBlackScholesPrice(tradingAccount, newUnderlyingPrice);
 
-                option.Ask = option.BlackScholesPrice;
-                option.Bid = option.BlackScholesPrice - option.Spread;
-                option.FillCalculatedFields(_context.TradingAccounts.First());
+                spread = option.Spread;
+                option.Bid = option.BlackScholesPrice - (spread / 2m);
+                option.Ask = option.BlackScholesPrice + (spread / 2m);
+                option.FillCalculatedFields(tradingAccount);
             }
 
             _context.SaveChanges();
