@@ -14,17 +14,11 @@ namespace OptionsAnalyzerApp.Data
         }
 
         public DbSet<TradingAccount> TradingAccounts { get; set; }
-        public DbSet<TradingAccountPriceChangeTarget> TradingAccountPriceChangeTargets { get; set; }
         public DbSet<Option> Options { get; set; }
-        public DbSet<OptionPriceChangeTarget> OptionPriceChangeTargets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TradingAccountPriceChangeTarget>()
-                    .HasOne(g => g.TradingAccount)
-                    .WithMany(t => t.PriceChangeTargets)
-                    .HasForeignKey(g => g.TradingAccountID)
-                    .OnDelete(Microsoft.EntityFrameworkCore.Metadata.DeleteBehavior.Cascade);
+            modelBuilder.Entity<TradingAccount>().Property(ta => ta.RiskFreeInterestRate).HasColumnType("decimal(18,4)");
         }
     }
 }

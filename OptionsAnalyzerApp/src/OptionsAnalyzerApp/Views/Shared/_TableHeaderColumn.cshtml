@@ -1,0 +1,11 @@
+﻿@model TableHeaderColumnModel
+
+@{ 
+    bool sortedOn = ViewBag.sortProperty == Model.SortProperty;
+    String sortIcon = ViewBag.sortDirection == "asc" ? "up" : "down";
+    String sortDirection = sortedOn ? (ViewBag.sortDirection == "asc" ? "desc" : "asc") : "asc";
+}
+
+<th>
+    <a asp-action="Index" asp-route-sortProperty="@Model.SortProperty" asp-route-sortDirection="@sortDirection">@Model.Header@if(sortedOn) {<i class="fa fa-chevron-@sortIcon" style="padding-left: 5px;"></i>}</a>
+</th>

@@ -21,6 +21,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.UnitSize)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedPriceChange)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RiskFreeInterestRate)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +41,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UnitSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedPriceChange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RiskFreeInterestRate)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

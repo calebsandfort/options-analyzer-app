@@ -11,6 +11,10 @@
     padding-top: 15px;
 }
 
+.slider-selection {
+	background: #5bc0de;
+}
+
 /*#region block-header */
 
 .block-header h2 {

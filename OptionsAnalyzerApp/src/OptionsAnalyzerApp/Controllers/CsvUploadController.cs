@@ -9,6 +9,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using OptionsAnalyzerApp.Framework;
 using OptionsAnalyzerApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,7 +24,7 @@ namespace OptionsAnalyzerApp.Controllers
             _context = context;
         }
 
-        public IActionResult Create()
+        public IActionResult Upload()
         {
             return View();
         }
@@ -33,34 +34,47 @@ namespace OptionsAnalyzerApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Contents")] CsvUpload csvUpload)
+        public async Task<IActionResult> Upload([Bind("Contents")] CsvUpload csvUpload)
         {
             if (ModelState.IsValid)
             {
                 _context.Options.Clear();
 
-                using (TextReader tr = new StringReader(csvUpload.Contents.Replace(",,", String.Empty)))
+                TradingAccount tradingAccount = _context.TradingAccounts.FirstOrDefault();
+
+                String[] split = csvUpload.Contents.Split(new String[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                Decimal underlyingPrice = Decimal.Parse(split[0]);
+
+                using (TextReader tr = new StringReader(String.Join(Environment.NewLine, split.Skip(1)).Replace(",,", String.Empty).Replace("%", String.Empty)))
                 {
                     var csv = new CsvReader(tr, new CsvConfiguration() { HasHeaderRecord = true });
                     while (csv.Read())
                     {
-                        String symbol = csv.GetField<String>(0);
-
                         Option callOption = new Option();
                         callOption.OptionType = OptionTypes.Call;
                         callOption.Delta = csv.GetField<Decimal>(0);
-                        callOption.Bid = csv.GetField<Decimal>(4);
-                        callOption.Ask = csv.GetField<Decimal>(6);
-                        callOption.Strike = csv.GetField<int>(9);
+                        callOption.ImpliedVolatility = csv.GetField<Decimal>(1) / 100m;
+                        callOption.Bid = csv.GetField<Decimal>(2);
+                        callOption.Ask = csv.GetField<Decimal>(4);
+                        callOption.Expiry = csv.GetField<DateTime>(6);
+                        callOption.Strike = csv.GetField<Decimal>(7);
+                        callOption.UnderlyingPrice = underlyingPrice;
+
+                        callOption.FillCalculatedFields(tradingAccount);
 
                         _context.Options.Add(callOption);
 
                         Option putOption = new Option();
                         putOption.OptionType = OptionTypes.Put;
-                        putOption.Delta = csv.GetField<Decimal>(14);
-                        putOption.Bid = csv.GetField<Decimal>(10);
-                        putOption.Ask = Math.Abs(csv.GetField<Decimal>(12));
-                        putOption.Strike = csv.GetField<int>(9);
+                        putOption.Delta = Math.Abs(csv.GetField<Decimal>(12));
+                        putOption.ImpliedVolatility = csv.GetField<Decimal>(13) / 100m;
+                        putOption.Bid = csv.GetField<Decimal>(8);
+                        putOption.Ask = csv.GetField<Decimal>(10);
+                        putOption.Expiry = csv.GetField<DateTime>(6);
+                        putOption.Strike = csv.GetField<Decimal>(7);
+                        putOption.UnderlyingPrice = underlyingPrice;
+
+                        putOption.FillCalculatedFields(tradingAccount);
 
                         _context.Options.Add(putOption);
 

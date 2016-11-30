@@ -53,7 +53,7 @@ namespace OptionsAnalyzerApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Balance,Name,UnitSize")] TradingAccount tradingAccount)
+        public async Task<IActionResult> Create([Bind("ID,Balance,Name,UnitSize,ExpectedPriceChange,RiskFreeInterestRate")] TradingAccount tradingAccount)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace OptionsAnalyzerApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Balance,Name,UnitSize")] TradingAccount tradingAccount)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Balance,Name,UnitSize,ExpectedPriceChange,RiskFreeInterestRate")] TradingAccount tradingAccount)
         {
             if (id != tradingAccount.ID)
             {

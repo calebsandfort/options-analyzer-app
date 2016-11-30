@@ -1,9 +1,163 @@
-﻿@{ ViewData["Title"] = "Home"; }
+﻿@model OptionsLayout
+
+@{ ViewData["Title"] = "Home"; }
 
 <div class="row">
-    <div class="col-xs-12 block-header block-header-info block-header-white">
+    <div class="col-xs-12">
+        Price Target:&nbsp;&nbsp;
+        <input type="text"
+               id="expectedPriceChangeSlider"
+               style="width: 400px"
+               data-provide="slider"
+               data-slider-min="10"
+               data-slider-max="200"
+               data-slider-step="5"
+               data-slider-value="@(Model.TradingAccount.ExpectedPriceChange * 100)" />
+        &nbsp;&nbsp;
+        @Model.TradingAccount.ExpectedPriceChange.ToString("C")
+    </div>
+</div>
+
+@if (Model.Puts.Count() > 0)
+{
+    <div class="row">
+        <div class="col-xs-12 block-header block-header-danger block-header-white">
+            <h2 style="margin: 20px 0;">
+                <span class="title">Puts</span><span class="decoration"></span><span class="decoration"></span><span class="decoration"></span>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-striped table-condensed table-bordered" style="font-size: 12px;">
+                <thead>
+                    <tr>
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].Strike), SortProperty = "Strike" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].Quantity), SortProperty = "Quantity" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].Delta), SortProperty = "Delta" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].ExpiryDays), SortProperty = "ExpiryDays" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].Bid), SortProperty = "Bid" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].Ask), SortProperty = "Ask" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].Spread), SortProperty = "Spread" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].DeltaPL), SortProperty = "DeltaPL" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].DeltaPLPercent), SortProperty = "DeltaPLPercent" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].BlackScholesPL), SortProperty = "BlackScholesPL" })
+                        @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Puts[0].BlackScholesPLPercent), SortProperty = "BlackScholesPLPercent" })
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Option option in Model.Puts)
+                    {
+                        <tr>
+                            <td>
+                                @option.Strike.ToString("C")
+                            </td>
+                            <td>
+                                @option.Quantity
+                            </td>
+                            <td>
+                                @option.Delta.ToString("N2")
+                            </td>
+                            <td>
+                                @option.ExpiryDays
+                            </td>
+                            <td>
+                                @option.Bid.ToString("C")
+                            </td>
+                            <td>
+                                @option.Ask.ToString("C")
+                            </td>
+                            <td>
+                                @option.Spread.ToString("C")
+                            </td>
+                            <td>
+                                @option.DeltaPL.ToString("C")
+                            </td>
+                            <td>
+                                @option.DeltaPLPercent.ToString("P2")
+                            </td>
+                            <td>
+                                @option.BlackScholesPL.ToString("C")
+                            </td>
+                            <td>
+                                @option.BlackScholesPLPercent.ToString("P2")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@if (Model.Calls.Count() > 0)
+{
+<div class="row">
+    <div class="col-xs-12 block-header block-header-success block-header-white">
         <h2 style="margin: 20px 0;">
-            <span class="title">Options Stuff Here!</span><span class="decoration"></span><span class="decoration"></span><span class="decoration"></span>
+            <span class="title">Calls</span><span class="decoration"></span><span class="decoration"></span><span class="decoration"></span>
         </h2>
     </div>
 </div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-striped table-condensed table-bordered" style="font-size: 12px;">
+            <thead>
+                <tr>
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].Strike), SortProperty = "Strike" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].Quantity), SortProperty = "Quantity" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].Delta), SortProperty = "Delta" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].ExpiryDays), SortProperty = "ExpiryDays" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].Bid), SortProperty = "Bid" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].Ask), SortProperty = "Ask" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].Spread), SortProperty = "Spread" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].DeltaPL), SortProperty = "DeltaPL" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].DeltaPLPercent), SortProperty = "DeltaPLPercent" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].BlackScholesPL), SortProperty = "BlackScholesPL" })
+                    @Html.Partial("_TableHeaderColumn", new TableHeaderColumnModel { Header = Html.DisplayNameFor(model => model.Calls[0].BlackScholesPLPercent), SortProperty = "BlackScholesPLPercent" })
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Option option in Model.Calls)
+                {
+                    <tr>
+                        <td>
+                            @option.Strike.ToString("C")
+                        </td>
+                        <td>
+                            @option.Quantity
+                        </td>
+                        <td>
+                            @option.Delta.ToString("N2")
+                        </td>
+                        <td>
+                            @option.ExpiryDays
+                        </td>
+                        <td>
+                            @option.Bid.ToString("C")
+                        </td>
+                        <td>
+                            @option.Ask.ToString("C")
+                        </td>
+                        <td>
+                            @option.Spread.ToString("C")
+                        </td>
+                        <td>
+                            @option.DeltaPL.ToString("C")
+                        </td>
+                        <td>
+                            @option.DeltaPLPercent.ToString("P2")
+                        </td>
+                        <td>
+                            @option.BlackScholesPL.ToString("C")
+                        </td>
+                        <td>
+                            @option.BlackScholesPLPercent.ToString("P2")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+}
