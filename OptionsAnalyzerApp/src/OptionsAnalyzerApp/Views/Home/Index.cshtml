@@ -26,34 +26,5 @@
     </div>
 </form>
 
-@if (Model.Puts.Count() > 0)
-{
-    <div class="row">
-        <div class="col-xs-12 block-header block-header-danger block-header-white">
-            <h2 style="margin: 20px 0;">
-                <span class="title">Puts</span><span class="decoration"></span><span class="decoration"></span><span class="decoration"></span>
-            </h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            @Html.Partial("_OptionsTable", Model.Puts)
-        </div>
-    </div>
-}
-
-@if (Model.Calls.Count() > 0)
-{
-<div class="row">
-    <div class="col-xs-12 block-header block-header-success block-header-white">
-        <h2 style="margin: 20px 0;">
-            <span class="title">Calls</span><span class="decoration"></span><span class="decoration"></span><span class="decoration"></span>
-        </h2>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        @Html.Partial("_OptionsTable", Model.Calls)
-    </div>
-</div>
-}
+@await Component.InvokeAsync("OptionsTable", new { optionType = OptionTypes.Put })
+@await Component.InvokeAsync("OptionsTable", new { optionType = OptionTypes.Call })

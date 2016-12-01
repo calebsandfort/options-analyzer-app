@@ -43,6 +43,17 @@ namespace OptionsAnalyzerApp.Models
         }
         public String Display { get; private set; }
     }
+    #endregion
+
+    #region ContextClassAttribute
+    public class ContextClassAttribute : Attribute
+    {
+        internal ContextClassAttribute(string contextClass)
+        {
+            this.ContextClass = contextClass;
+        }
+        public String ContextClass { get; private set; }
+    }
     #endregion 
     #endregion
 
@@ -54,10 +65,12 @@ namespace OptionsAnalyzerApp.Models
 
         [EnumDisplay("Call")]
         [EnumPluralDisplay("Calls")]
+        [ContextClass("success")]
         Call,
 
         [EnumDisplay("Put")]
         [EnumPluralDisplay("Puts")]
+        [ContextClass("danger")]
         Put
     }
     #endregion
