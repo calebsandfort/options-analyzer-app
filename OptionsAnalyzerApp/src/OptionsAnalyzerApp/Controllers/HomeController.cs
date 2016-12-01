@@ -52,8 +52,8 @@ namespace OptionsAnalyzerApp.Controllers
             ViewData["sortProperty"] = sortProperty;
             ViewData["sortDirection"] = sortDirection;
 
-            optionsLayout.Puts = _context.Options.Where(x => x.OptionType == OptionTypes.Put).OrderBy(sortProperty, sortDirection).ToList();
-            optionsLayout.Calls = _context.Options.Where(x => x.OptionType == OptionTypes.Call).OrderBy(sortProperty, sortDirection).ToList();
+            optionsLayout.Puts = _context.Options.Where(x => x.OptionType == OptionTypes.Put && x.BlackScholesPLPercent > 0).OrderBy(sortProperty, sortDirection).ToList();
+            optionsLayout.Calls = _context.Options.Where(x => x.OptionType == OptionTypes.Call && x.BlackScholesPLPercent > 0).OrderBy(sortProperty, sortDirection).ToList();
 
             return View(optionsLayout);
         }
