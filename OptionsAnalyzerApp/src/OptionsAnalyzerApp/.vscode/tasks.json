@@ -1,0 +1,34 @@
+{
+    "version": "0.1.0",
+    "command": "dotnet",
+    "isShellCommand": true,
+    "options": {
+        // Make sure this points to the directory containing project.json
+        "cwd": "${workspaceRoot}/src/OptionsAnalyzerApp"
+    },
+    "args": [],
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": [
+                "${workspaceRoot}/project.json"
+            ],
+            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "bundle"
+        },
+        {
+            "taskName": "clean",
+            "args": [ "bundle", "clean" ],
+            "suppressTaskName": true
+        },
+        {
+            "taskName": "watch",
+            "args": [ "bundle", "watch" ],
+            "suppressTaskName": true,
+            "isWatching": true
+        }
+    ]
+}
