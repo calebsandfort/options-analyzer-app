@@ -110,7 +110,17 @@ namespace OptionsAnalyzerApp.Framework
         #region Today
         public static DateTime Today()
         {
-            var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+            var myTimeZone = new TimeZoneInfo("");
+
+            try
+            {
+                myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+            }
+            catch
+            {
+                myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Los_Angeles");
+            }
+
             return TimeZoneInfo.ConvertTime(DateTime.UtcNow, myTimeZone).Date;
         }
         #endregion
