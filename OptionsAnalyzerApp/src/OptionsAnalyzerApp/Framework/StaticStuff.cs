@@ -110,7 +110,7 @@ namespace OptionsAnalyzerApp.Framework
         #region Today
         public static DateTime Today()
         {
-            var myTimeZone = new TimeZoneInfo("");
+            var myTimeZone = TimeZoneInfo.Local;
 
             try
             {
