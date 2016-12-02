@@ -148,10 +148,6 @@ namespace OptionsAnalyzerApp.Controllers
         public String GetNow()
         {
             var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
-            var utcTimeZone = TimeZoneInfo.FindSystemTimeZoneById("UTC");
-
-            //Pacific Standard Time
-
             return TimeZoneInfo.ConvertTime(DateTime.UtcNow, myTimeZone).ToString();
         }
     }

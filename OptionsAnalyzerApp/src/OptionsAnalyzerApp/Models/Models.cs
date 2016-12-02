@@ -148,7 +148,7 @@ namespace OptionsAnalyzerApp.Models
         {
             get
             {
-                return (this.Expiry - DateTime.Today).Days;
+                return (this.Expiry - StaticStuff.Today()).Days;
             }
         }
 
