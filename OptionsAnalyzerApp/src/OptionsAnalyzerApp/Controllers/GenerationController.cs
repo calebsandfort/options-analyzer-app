@@ -142,5 +142,12 @@ namespace OptionsAnalyzerApp.Controllers
 
             _context.SaveChanges();
         }
+
+        [HttpGet]
+        [Route("Now")]
+        public String GetNow()
+        {
+            return DateTime.Now.ToString();
+        }
     }
 }
