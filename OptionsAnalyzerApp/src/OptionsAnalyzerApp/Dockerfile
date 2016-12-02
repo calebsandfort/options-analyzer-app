@@ -1,5 +1,6 @@
-﻿FROM microsoft/dotnet:1.0.1-sdk-projectjson-nanoserver
-# FROM microsoft/dotnet:1.0.1-sdk-projectjson
+﻿# FROM microsoft/dotnet:1.1.0-sdk-projectjson-nanoserver
+# FROM microsoft/dotnet:1.1.0-sdk-projectjson
+FROM microsoft/aspnetcore-build:1.1.0-projectjson
 
 MAINTAINER Caleb Sandfort
 
