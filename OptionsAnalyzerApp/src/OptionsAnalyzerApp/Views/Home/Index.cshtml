@@ -26,5 +26,6 @@
     </div>
 </form>
 
-@await Component.InvokeAsync("OptionsTable", new { optionType = OptionTypes.Put })
-@await Component.InvokeAsync("OptionsTable", new { optionType = OptionTypes.Call })
+<vc:options-table option-type="@OptionTypes.Put"></vc:options-table>
+<vc:options-table option-type="@OptionTypes.Call"></vc:options-table>
+
