@@ -9,6 +9,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using OptionsAnalyzerApp.Data;
 using OptionsAnalyzerApp.Models;
+using System.Collections.ObjectModel;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -149,6 +150,16 @@ namespace OptionsAnalyzerApp.Controllers
         {
             var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
             return TimeZoneInfo.ConvertTime(DateTime.UtcNow, myTimeZone).ToString();
+        }
+
+        [HttpGet]
+        [Route("Timezones")]
+        public String GetTimezones()
+        {
+            ReadOnlyCollection<TimeZoneInfo> tz;
+            tz = TimeZoneInfo.GetSystemTimeZones();
+
+            return String.Join(Environment.NewLine, tz.Select(x => x.Id).OrderBy(s => s));
         }
     }
 }
