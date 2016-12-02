@@ -147,7 +147,12 @@ namespace OptionsAnalyzerApp.Controllers
         [Route("Now")]
         public String GetNow()
         {
-            return DateTime.Now.ToString();
+            var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+            var utcTimeZone = TimeZoneInfo.FindSystemTimeZoneById("UTC");
+
+            //Pacific Standard Time
+
+            return TimeZoneInfo.ConvertTime(DateTime.UtcNow, myTimeZone).ToString();
         }
     }
 }
