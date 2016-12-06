@@ -55,9 +55,9 @@ namespace OptionsAnalyzerApp.Controllers
                         callOption.Delta = csv.GetField<Decimal>(0);
                         callOption.ImpliedVolatility = csv.GetField<Decimal>(1) / 100m;
                         callOption.Bid = csv.GetField<Decimal>(2);
-                        callOption.Ask = csv.GetField<Decimal>(4);
-                        callOption.Expiry = csv.GetField<DateTime>(6);
-                        callOption.Strike = csv.GetField<Decimal>(7);
+                        callOption.Ask = csv.GetField<Decimal>(5);
+                        callOption.Expiry = csv.GetField<DateTime>(7);
+                        callOption.Strike = csv.GetField<Decimal>(8);
                         callOption.UnderlyingPrice = underlyingPrice;
 
                         callOption.FillCalculatedFields(tradingAccount);
@@ -66,12 +66,12 @@ namespace OptionsAnalyzerApp.Controllers
 
                         Option putOption = new Option();
                         putOption.OptionType = OptionTypes.Put;
-                        putOption.Delta = Math.Abs(csv.GetField<Decimal>(12));
-                        putOption.ImpliedVolatility = csv.GetField<Decimal>(13) / 100m;
-                        putOption.Bid = csv.GetField<Decimal>(8);
-                        putOption.Ask = csv.GetField<Decimal>(10);
-                        putOption.Expiry = csv.GetField<DateTime>(6);
-                        putOption.Strike = csv.GetField<Decimal>(7);
+                        putOption.Delta = Math.Abs(csv.GetField<Decimal>(13));
+                        putOption.ImpliedVolatility = csv.GetField<Decimal>(14) / 100m;
+                        putOption.Bid = csv.GetField<Decimal>(9);
+                        putOption.Ask = csv.GetField<Decimal>(11);
+                        putOption.Expiry = csv.GetField<DateTime>(7);
+                        putOption.Strike = csv.GetField<Decimal>(8);
                         putOption.UnderlyingPrice = underlyingPrice;
 
                         putOption.FillCalculatedFields(tradingAccount);
