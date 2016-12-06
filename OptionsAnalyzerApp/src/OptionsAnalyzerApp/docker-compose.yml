@@ -4,7 +4,7 @@ services:
 
     web:
         container_name: 'optionsanalyzerapp'
-        image: 'optionsanalyzerapp'
+        image: 'calebsandfort/optionsanalyzerapp'
         build:
             context: .
         ports:
